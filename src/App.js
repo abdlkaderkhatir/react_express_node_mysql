@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Box,
+  Heading,
+  Stack,StackDivider,
+  Text,
+} from "@chakra-ui/react";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Box maxW={500} m={20} >
+        <Card bg={"tomato"}>
+          <CardHeader>
+            <Heading size="md">Client Report</Heading>
+          </CardHeader>
+
+          <CardBody>
+            <Stack divider={<StackDivider />} spacing="4">
+              <Box>
+                <Heading size="xs" textTransform="uppercase">
+                  Summary
+                </Heading>
+                <Text pt="2" fontSize="sm">
+                  View a summary of all your clients over the last month.
+                </Text>
+              </Box>
+              <Box>
+                <Heading size="xs" textTransform="uppercase">
+                  Overview
+                </Heading>
+                <Text pt="2" fontSize="sm">
+                  Check out the overview of your clients.
+                </Text>
+              </Box>
+              <Box>
+                <Heading size="xs" textTransform="uppercase">
+                  Analysis
+                </Heading>
+                <Text pt="2" fontSize="sm">
+                  See a detailed analysis of all your business clients.
+                </Text>
+              </Box>
+            </Stack>
+          </CardBody>
+        </Card>
+      </Box>
     </div>
   );
 }
