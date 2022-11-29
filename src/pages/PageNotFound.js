@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 function PageNotFound() {
   return (
-    <Flex   className="pagenotfound" align="center" justifyContent="center">
+    <Flex    className="pagenotfound" align="center" justifyContent="center">
 
     <VStack >
-        <h1>Page Not Found :/</h1>
+        <h1>Page  Not Found : 404/</h1>
         <h3>
           Go to the Home Page: <Link to="/"> Home Page</Link>
         </h3>
