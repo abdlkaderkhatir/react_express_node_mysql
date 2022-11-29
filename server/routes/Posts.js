@@ -1,19 +1,48 @@
 const express = require("express");
 const router = express.Router();
-const {Posts} =require("../models")
+const {Posts,Likes} =require("../models")
+const { validateToken } = require("../middlewares/AuthMiddleware");
 
-
-router.get("/", async (req, res) => {
-  const posts = await Posts.findAll();
-  res.json(posts);
-    // res.json("Hello World")
+router.get("/",validateToken ,async (req, res) => {
+  const posts = await Posts.findAll({ include: [Likes] });
+  const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } });
+  res.json({ listOfPosts: posts, likedPosts: likedPosts });
     // res.send("Hello World")
 });
 
-router.post("/", async (req, res) => {
-  // const post = req.body;
-  const post= await Posts.create(req.body);
+router.get("/byId/:id", async (req, res) => {
+  const id = req.params.id;
+  
+  const post = await Posts.findByPk(id);
   res.json(post);
+});
+
+router.get("/byuserId/:id", async (req, res) => {
+  const id = req.params.id;
+  const listOfPosts = await Posts.findAll({
+    where: { UserId: id },
+    include: [Likes],
+  });
+  res.json(listOfPosts);
+});
+
+router.post("/",validateToken, async (req, res) => {
+  const post = req.body;
+  post.username=req.user.username;
+  post.UserId = req.user.id;
+  const crpost= await Posts.create(post);
+  res.json(crpost);
+});
+
+router.delete("/:postId", validateToken, async (req, res) => {
+  const postId = req.params.postId;
+  await Posts.destroy({
+    where: {
+      id: postId,
+    },
+  });
+
+  res.json("DELETED SUCCESSFULLY");
 });
 
 module.exports = router;
