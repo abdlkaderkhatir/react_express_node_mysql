@@ -1,5 +1,26 @@
 .App {
   text-align: center;
 }
-
+#inputCreatePost {
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+#inputLogin {
+  height: 40px;
+  width: inherit;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+.pagenotfound{
+  height: calc(100vh - 70px);
+}
 
